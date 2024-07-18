@@ -16,7 +16,7 @@ targetNodes:
     - cp
 
 mixins:
-  - https://raw.githubusercontent.com/jelastic-jps/common/main/clustered-addon-utils.yml
+  - https://raw.githubusercontent.com/sych74/common/JE-70010/clustered-addon-utils.yml
 
 onBeforeInit: |
   var resp = api.dev.scripting.Eval("c05ffa5b45628a2a0c95467ebca8a0b4", session, "cdn.wizard.ui");            
