@@ -150,42 +150,42 @@ actions:
       script: purge
       path: ${this:}
           
-cdnUninstall:
-  - eval: 
-      script: uninstall
-  - checkClustering:
-      nodeGroup: ${targetNodes.nodeGroup}
-      app_id: ${globals.app_id}
-  - if (globals.cluster):
-    - if (!globals.isSecondaryExecuted):
-      - createLockFile:
-          nodeGroup: ${targetNodes.nodeGroup}
-          app_id: ${globals.app_id}
-      - if (!globals.isOppositeExecuted):
-        - if (globals.isSecondaryEnv):
-            executeAction:
-              envName: ${globals.primaryEnvName}
-              nodeGroup: ${targetNodes.nodeGroup}
-              action: uninstall
-              app_id: ${globals.app_id}
-        - else:
-            executeAction:
-              envName: ${globals.secondaryEnvName}
-              nodeGroup: ${targetNodes.nodeGroup}
-              action: uninstall
-              app_id: ${globals.app_id}
-      - markExecutedEnvFile:
-          nodeGroup: ${targetNodes.nodeGroup}
-          app_id: ${globals.app_id}
-      - removeLockFile:
-          nodeGroup: ${targetNodes.nodeGroup}
-          app_id: ${globals.app_id}
-      - removeExecutedEnvFile:
-          nodeGroup: ${targetNodes.nodeGroup}
-          app_id: ${globals.app_id}
-      - removeExecutedEnvFile:
-          nodeGroup: ${targetNodes.nodeGroup}
-          app_id: ${globals.app_id}
-          extension: lock
+  cdnUninstall:
+    - eval: 
+        script: uninstall
+    - checkClustering:
+        nodeGroup: ${targetNodes.nodeGroup}
+        app_id: ${globals.app_id}
+    - if (globals.cluster):
+      - if (!globals.isSecondaryExecuted):
+        - createLockFile:
+            nodeGroup: ${targetNodes.nodeGroup}
+            app_id: ${globals.app_id}
+        - if (!globals.isOppositeExecuted):
+          - if (globals.isSecondaryEnv):
+              executeAction:
+                envName: ${globals.primaryEnvName}
+                nodeGroup: ${targetNodes.nodeGroup}
+                action: uninstall
+                app_id: ${globals.app_id}
+          - else:
+              executeAction:
+                envName: ${globals.secondaryEnvName}
+                nodeGroup: ${targetNodes.nodeGroup}
+                action: uninstall
+                app_id: ${globals.app_id}
+        - markExecutedEnvFile:
+            nodeGroup: ${targetNodes.nodeGroup}
+            app_id: ${globals.app_id}
+        - removeLockFile:
+            nodeGroup: ${targetNodes.nodeGroup}
+            app_id: ${globals.app_id}
+        - removeExecutedEnvFile:
+            nodeGroup: ${targetNodes.nodeGroup}
+            app_id: ${globals.app_id}
+        - removeExecutedEnvFile:
+            nodeGroup: ${targetNodes.nodeGroup}
+            app_id: ${globals.app_id}
+            extension: lock
 
 success: /text/success.md
