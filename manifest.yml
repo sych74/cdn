@@ -16,7 +16,7 @@ targetNodes:
     - cp
 
 mixins:
-  - https://raw.githubusercontent.com/sych74/common/JE-70010/clustered-addon-utils.yml
+  - https://raw.githubusercontent.com/jelastic-jps/common/main/clustered-addon-utils.yml
 
 onBeforeInit: |
   var resp = api.dev.scripting.Eval("c05ffa5b45628a2a0c95467ebca8a0b4", session, "cdn.wizard.ui");            
@@ -158,7 +158,7 @@ actions:
         app_id: ${globals.app_id}
     - if (globals.cluster):
       - if (!globals.isSecondaryExecuted):
-        - createLockFile:
+        - markExecutedEnvFile:
             nodeGroup: ${targetNodes.nodeGroup}
             app_id: ${globals.app_id}
         - if (!globals.isOppositeExecuted):
@@ -174,12 +174,6 @@ actions:
                 nodeGroup: ${targetNodes.nodeGroup}
                 action: uninstall
                 app_id: ${globals.app_id}
-        - markExecutedEnvFile:
-            nodeGroup: ${targetNodes.nodeGroup}
-            app_id: ${globals.app_id}
-        - removeLockFile:
-            nodeGroup: ${targetNodes.nodeGroup}
-            app_id: ${globals.app_id}
         - removeExecutedEnvFile:
             nodeGroup: ${targetNodes.nodeGroup}
             app_id: ${globals.app_id}
