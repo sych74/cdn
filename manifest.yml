@@ -153,6 +153,9 @@ actions:
   cdnUninstall:
     - eval:
         script: uninstall
+    - validateState:
+        nodeGroup: ${targetNodes.nodeGroup}
+        app_id: ${globals.app_id}
     - checkClustering:
         nodeGroup: ${targetNodes.nodeGroup}
         app_id: ${globals.app_id}
